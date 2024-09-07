@@ -166,35 +166,6 @@ contract EpheSafe is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeab
         emit SafeClaimed(claimAddress, tokenId, safeInfo[tokenId].amount, safeInfo[tokenId].tokenAddress, safeInfo[tokenId].safeMetadata);
     }
 
-    // function burnSafe(uint256 tokenId) public {
-    //     require( block.timestamp > safeInfo[tokenId].expiry, "TokenSafe: safe not expired");
-    //     require(safeInfo[tokenId].status == SafeStatus.ACTIVE, "TokenSafe: safe already claimed or expired");
-    //     safeInfo[tokenId].status = SafeStatus.EXPIRED_REFUNDED;
-
-    //     uint256 burnReward = calculateBurnRewardFee(safeInfo[tokenId].amount);
-    //     totalBurnRewardFeeDistributed += burnReward;
-
-    //     uint256 refundAmount = safeInfo[tokenId].amount - burnReward;
-
-    //     if(safeInfo[tokenId].tokenAddress != address(0)) {
-    //         IERC20 token = IERC20(safeInfo[tokenId].tokenAddress);
-    //         token.transfer(safeInfo[tokenId].refundTreasury, refundAmount);
-    //         // Send burn reward to msg.sender
-    //         token.transfer(msg.sender, burnReward);
-    //     }else{
-    //         payable(safeInfo[tokenId].refundTreasury).transfer(refundAmount);
-    //         // Send burn reward to msg.sender
-    //         payable(msg.sender).transfer(burnReward);
-    //     }
-
-    //     safeInfo[tokenId].transferable = true;
-    //     _burn(tokenId);
-    //     safeInfo[tokenId].transferable = false;
-
-    //     totalBurntSafes += 1;
-    //     emit SafeDestroyed(msg.sender, tokenId, safeInfo[tokenId].amount, safeInfo[tokenId].tokenAddress, burnReward);
-    // }
-
 
     function getAllSafes() public view returns (uint256[] memory) {
         uint256 total = totalSupply();
