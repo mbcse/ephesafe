@@ -1,6 +1,6 @@
 # EpheSafe
 
-EpheSafe is a decentralized application (dApp) built on the RootStock blockchain that allows users to lock their assets into "safe" NFTs, securing them from unauthorized transfers. The assets can be claimed after a specified lock period or via an emergency unlock process using a multi-signature mechanism.
+EpheSafe is a decentralized application (dApp) built on the RootStock blockchain that allows users to lock their assets into "safe" Ephemeral NFTs, securing them from unauthorized transfers. The assets can be claimed after a specified lock period or via an emergency unlock process using a multi-signature mechanism.
 
 
 ![Alt Text](./EpheSafe.jpg)
