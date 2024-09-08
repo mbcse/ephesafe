@@ -142,15 +142,16 @@ module.exports = {
       scroll_testnet: config.SCROLLSCAN_API_KEY,
       avalancheFujiTestnet: "snowtrace",
       84532: config.BASESCAN_API_KEY,
+      31: "api"
     },
     customChains: [
       {
-        network: "84532",
-        chainId: 84532,
+        network: "31",
+        chainId: 31,
         urls: {
-          apiURL: "https://api-sepolia.basescan.org/api",
-          browserURL: "https://sepolia.basescan.org/",
-        },
+          apiURL: "https://rootstock-testnet.blockscout.com/api/",
+          browserURL: "https://rootstock-testnet.blockscout.com/",
+        }
       },
     ],
   },

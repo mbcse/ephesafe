@@ -113,6 +113,7 @@ export default function MySafes() {
 
   const executeEmergencyUnlock = async (unlockAddress) => {
     setIsLoading(true);
+    onClose();
     try {
       const signer = await getDefaultEthersSigner();
       const epheSafeContract = new ethers.Contract(
@@ -127,7 +128,6 @@ export default function MySafes() {
       console.error("Error executing emergency unlock:", error);
     }
     setIsLoading(false);
-    onClose();
   };
 
   return (

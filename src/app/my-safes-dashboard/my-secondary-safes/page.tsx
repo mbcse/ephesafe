@@ -62,23 +62,25 @@ export default function MySafes() {
 
       const emergencyUnlockState = await epheSafeContract.emergencyUnlockState(mySafes[i]);
 
-      const safeObject = {
-        nftId: mySafes[i],
-        amount: ethers.formatUnits(safeInfo.amount.toString(), tokenDecimals),
-        tokenSymbol: tokenSymbol,
-        expiry: formatUnixTimestamp(Number(safeInfo.expiry.toString())),
-        status: safeInfo.status,
-        metadata: safeMetadata,
-        safeAddresses: safeInfo.multiSafeAddresses,
-        noOfApprovalsRequired: safeInfo.noOfApprovalsRequired.toString(),
-        emergencyUnlockState: {
-          status: emergencyUnlockState.status,
-          unlockAddresses: unlockAddresses,
-          approvalCount: emergencyUnlockState.approvalCount.toString(),
-        },
-      };
-      console.log(safeObject)
-      safes.push(safeObject);
+      if(safeInfo.status != "EMERGENCY_UNLOCKED"){
+        const safeObject = {
+          nftId: mySafes[i],
+          amount: ethers.formatUnits(safeInfo.amount.toString(), tokenDecimals),
+          tokenSymbol: tokenSymbol,
+          expiry: formatUnixTimestamp(Number(safeInfo.expiry.toString())),
+          status: safeInfo.status,
+          metadata: safeMetadata,
+          safeAddresses: safeInfo.multiSafeAddresses,
+          noOfApprovalsRequired: safeInfo.noOfApprovalsRequired.toString(),
+          emergencyUnlockState: {
+            status: emergencyUnlockState.status,
+            unlockAddresses: unlockAddresses,
+            approvalCount: emergencyUnlockState.approvalCount.toString(),
+          },
+        };
+        console.log(safeObject)
+        safes.push(safeObject);
+      }
     }
     setMySafes(safes);
    
@@ -114,6 +116,7 @@ export default function MySafes() {
 
   const executeEmergencyUnlock = async (unlockAddress) => {
     setIsLoading(true);
+    onClose();
     try {
       const signer = await getDefaultEthersSigner();
       const epheSafeContract = new ethers.Contract(
@@ -128,7 +131,6 @@ export default function MySafes() {
       console.error("Error executing emergency unlock:", error);
     }
     setIsLoading(false);
-    onClose();
   };
 
   return (

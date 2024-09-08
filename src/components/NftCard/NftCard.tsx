@@ -66,10 +66,11 @@ const NftCard = ({
     } else if (new Date(expiry) < new Date()) {
       return (
         <>
-        <Button colorScheme="teal" onClick={onOpen}>
+        {emergencyUnlockState.status == 0 && <Button colorScheme="teal" onClick={onOpen}>
           CLAIM
         </Button>
-        {
+        }
+        {/* {
           emergencyUnlockState.status == 0 ? (
             <Button colorScheme="yellow" onClick={handleEmergencyUnlock}>
               Emergency Unlock
@@ -79,7 +80,7 @@ const NftCard = ({
               APPROVE EMERGENCY UNLOCK
             </Button>
           )
-        }
+        } */}
         </>
       );
     }else {
@@ -92,7 +93,7 @@ const NftCard = ({
               I AM HACKED
             </Button>
             <Button colorScheme="yellow" onClick={handleEmergencyUnlock}>
-            Emergency Unlock
+              Emergency Unlock
            </Button>
             </>
           ): (

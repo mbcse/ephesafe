@@ -318,16 +318,16 @@ contract EpheSafe is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeab
         SafeInfo storage info = safeInfo[tokenId];
         require(recipient != address(0), "EpheSafe: Invalid recipient address");
 
-        info.status = SafeStatus.EMERGENCY_UNLOCKED;
-
         if (info.tokenAddress != address(0)) {
             IERC20 token = IERC20(info.tokenAddress);
             token.transfer(recipient, info.amount);
         } else {
             payable(recipient).transfer(info.amount);
         }
-
+        info.expiry = 0;
         _burn(tokenId);
+        info.status = SafeStatus.EMERGENCY_UNLOCKED;
+        emergencyUnlockState[tokenId].status = EmergencyUnlockStatus.COMPLETED;
         emit EmergencyUnlockExecuted(msg.sender, tokenId, info.amount, info.tokenAddress, recipient);
     }
 
