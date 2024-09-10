@@ -52,6 +52,7 @@ EpheSafe is a decentralized application (dApp) built on the RootStock blockchain
 
 ## Video Demo
 
+https://www.loom.com/share/ec263a50693e48289d3799d8156b58a1
 
 ## Smart Contracts
 
